@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_padding">10dp</dimen>
+    <dimen name="text_size_mid">18dp</dimen>
+    <dimen name="text_view_margin_bottom">10dp</dimen>
+    <dimen name="user_picture_edit_view_height">180dp</dimen>
+    <dimen name="text_size_large">30dp</dimen>
+
+    <dimen name="user_picture_confirm_view_size">60dp</dimen>
+    <dimen name="card_view_margin">10dp</dimen>
+    <dimen name="button_text_size">20dp</dimen>
+    <dimen name="confirm_button_margin">20dp</dimen>
+</resources>

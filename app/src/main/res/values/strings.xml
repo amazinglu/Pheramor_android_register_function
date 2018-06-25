@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">pheramor_project</string>
+    <string name="user_email">User Email</string>
+    <string name="user_password">Password</string>
+    <string name="user_password_confirm">Confirm Password</string>
+    <string name="next_button">next</string>
+    <string name="password_not_match">* the pasword and confim passwrod is not match, please try again!</string>
+    <string name="user_name">Full Name</string>
+    <string name="user_zip_code">ZipCode</string>
+    <string name="user_height">Height</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="user_gender">Gender</string>
+    <string name="user_race">Race</string>
+    <string name="user_religion">Religion</string>
+    <string name="user_picture">Please upload a user profile picture</string>
+    <string name="user_picture_edit">edit</string>
+    <string name="edit_button_text">Edit</string>
+    <string name="upload_button_text">Confirm and upload</string>
+    <string name="register_title">Welcome to Pheramor</string>
+    <string name="register_button_text">Register to Pheramor</string>
+
+    <string-array name="height_unit_chooser">
+        <item>inch</item>
+        <item>mm</item>
+    </string-array>
+
+    <string-array name="gender_chooser">
+        <item>male</item>
+        <item>female</item>
+    </string-array>
+
+    <string-array name="race_chooser">
+        <item>American Indian or Alaska Native</item>
+        <item>Asian</item>
+        <item>Black or African American</item>
+        <item>Native Hawaiian or Other Pacific Islander</item>
+        <item>White</item>
+        <item>not specify</item>
+    </string-array>
+
+    <string-array name="religion_chooser">
+        <item>Christianity</item>
+        <item>Islam</item>
+        <item>Nonreligious</item>
+        <item>Hinduism</item>
+        <item>Chinese traditional religion</item>
+        <item>Buddhism</item>
+        <item>Primal-indigenous</item>
+        <item>African traditional and Diasporic</item>
+        <item>Sikhism</item>
+        <item>Juche</item>
+        <item>Spiritism</item>
+        <item>Judaism</item>
+        <item>Bahai</item>
+        <item>Jainism</item>
+        <item>Shinto</item>
+        <item>Cao Dai</item>
+        <item>Zoroastrianism</item>
+        <item>Tenrikyo</item>
+        <item>Neo-Paganism</item>
+        <item>Unitarian-Universalism</item>
+        <item>not specify</item>
+    </string-array>
+
+</resources>

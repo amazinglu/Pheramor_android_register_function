@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/layout_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_mid"
+        android:layout_marginBottom="@dimen/text_view_margin_bottom"
+        android:text="@string/user_picture"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_picture_edit_view_height">
+
+        <ImageView
+            android:id="@+id/summary_edit_user_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/user_picture_edit_view_height"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user_ghost"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/baseline_photo_camera_black_18dp"
+            android:textSize="@dimen/text_size_large"
+            android:text="@string/user_picture_edit"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/next_button_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_padding"
+        android:text="@string/next_button"/>
+
+</LinearLayout>

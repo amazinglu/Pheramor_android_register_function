@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_red"
+        android:textColor="@color/colorWhite"
+        android:padding="@dimen/layout_padding"
+        android:text="@string/password_not_match"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_mid"
+            android:layout_marginBottom="@dimen/text_view_margin_bottom"
+            android:text="@string/user_gender"/>
+
+        <Spinner
+            android:id="@+id/user_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_padding"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_mid"
+            android:layout_marginBottom="@dimen/text_view_margin_bottom"
+            android:text="@string/date_of_birth"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_mid"
+            android:hint="May, 12th, 2018"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_button_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/layout_padding"
+        android:background="@drawable/button_round_corner"
+        android:layout_margin="@dimen/layout_padding"
+        android:text="@string/next_button"/>
+
+</LinearLayout>
