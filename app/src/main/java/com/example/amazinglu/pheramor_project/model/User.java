@@ -12,8 +12,8 @@ public class User implements Parcelable{
     public String password;
     public String name;
     public String zipCode;
-    public double height;
-    public String height_measure_unit;
+    public Double height;
+    public String heightMeasureUnit;
     public String gender;
     public Date dateOfBirth;
     public String race;
@@ -28,7 +28,7 @@ public class User implements Parcelable{
         name = in.readString();
         zipCode = in.readString();
         height = in.readDouble();
-        height_measure_unit = in.readString();
+        heightMeasureUnit = in.readString();
         gender = in.readString();
         dateOfBirth = DateUtil.stringTodate(in.readString());
         race = in.readString();
@@ -60,7 +60,7 @@ public class User implements Parcelable{
         parcel.writeString(name);
         parcel.writeString(zipCode);
         parcel.writeDouble(height);
-        parcel.writeString(height_measure_unit);
+        parcel.writeString(heightMeasureUnit);
         parcel.writeString(gender);
         parcel.writeString(DateUtil.dateToString(dateOfBirth));
         parcel.writeString(race);

@@ -10,4 +10,5 @@
     <dimen name="card_view_margin">10dp</dimen>
     <dimen name="button_text_size">20dp</dimen>
     <dimen name="confirm_button_margin">20dp</dimen>
+    <dimen name="toolbar_elevation">5dp</dimen>
 </resources>

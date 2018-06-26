@@ -18,6 +18,16 @@
     <string name="upload_button_text">Confirm and upload</string>
     <string name="register_title">Welcome to Pheramor</string>
     <string name="register_button_text">Register to Pheramor</string>
+    <string name="email_empty_warning">Email is required !!</string>
+    <string name="email_not_valid_warning">Enter a valid email !!</string>
+    <string name="password_empty_warning">Password is required !!</string>
+    <string name="password_not_valid_warning"><![CDATA[Enter a valid password (len > 6)!!]]></string>
+    <string name="password_not_match_warning">Password is not match !!</string>
+    <string name="user_name_empty_warning">User name is required !!</string>
+    <string name="zipcode_empty_warning">Zipcode is required !!</string>
+    <string name="height_empty_warning">Height is required</string>
+    <string name="height_not_valid_warning">Enter a valid height !!</string>
+    <string name="register_activity_title">Welcome to Pheramor</string>
 
     <string-array name="height_unit_chooser">
         <item>inch</item>
