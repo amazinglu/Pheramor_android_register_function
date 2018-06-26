@@ -28,6 +28,18 @@
     <string name="height_empty_warning">Height is required</string>
     <string name="height_not_valid_warning">Enter a valid height !!</string>
     <string name="register_activity_title">Welcome to Pheramor</string>
+    <string name="gender_empty_warning">Gender is required !!</string>
+    <string name="dob_empty_warning">Date of brith is required !!</string>
+    <string name="dob_not_valid_warning">Enter a valid date of birth !!</string>
+    <string name="user_gender_of_interest">Interest in gender</string>
+    <string name="user_interest_age_range">Interest age range</string>
+    <string name="interest_age_range_from">From</string>
+    <string name="interest_age_range_to">To</string>
+    <string name="gender_interest_empty_warning">Gender in interest is needed !!</string>
+    <string name="max_interest_age_empty_warning">Max interest age is required !!</string>
+    <string name="min_interest_age_empty_warning">Min interest age is required !!</string>
+    <string name="min_interest_age_not_valid_warning">Min age can not be larger than max age !!</string>
+    <string name="race_empty_warning">race is needed</string>
 
     <string-array name="height_unit_chooser">
         <item>inch</item>
@@ -37,6 +49,7 @@
     <string-array name="gender_chooser">
         <item>male</item>
         <item>female</item>
+        <item>eunuch</item>
     </string-array>
 
     <string-array name="race_chooser">
@@ -70,6 +83,14 @@
         <item>Neo-Paganism</item>
         <item>Unitarian-Universalism</item>
         <item>not specify</item>
+    </string-array>
+
+    <string-array name="interest_in_gender_chooser">
+        <item>Heterosexual</item>
+        <item>Homosexual</item>
+        <item>Lesbian</item>
+        <item>Bisexual</item>
+        <item>Pansexual</item>
     </string-array>
 
 </resources>

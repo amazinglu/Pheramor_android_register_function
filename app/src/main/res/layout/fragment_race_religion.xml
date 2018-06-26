@@ -17,10 +17,11 @@
             android:layout_marginBottom="@dimen/text_view_margin_bottom"
             android:text="@string/user_race"/>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/user_race"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@android:style/Widget.EditText"
             android:padding="@dimen/layout_padding"/>
 
     </LinearLayout>
@@ -38,10 +39,11 @@
             android:layout_marginBottom="@dimen/text_view_margin_bottom"
             android:text="@string/user_religion"/>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/user_religion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@android:style/Widget.EditText"
             android:padding="@dimen/layout_padding"/>
 
     </LinearLayout>

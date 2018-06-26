@@ -4,6 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_picture_edit_view_height"
+        android:padding="@dimen/layout_padding">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/user_picture_edit_view_height"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user_ghost"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/baseline_photo_camera_black_18dp"
+            android:textSize="@dimen/text_size_large"
+            android:text="@string/user_picture_edit"/>
+
+            <View
+                android:id="@+id/user_image_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/user_name_layout"
         android:layout_width="match_parent"
@@ -56,10 +84,10 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/height_unit_of_measurement"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

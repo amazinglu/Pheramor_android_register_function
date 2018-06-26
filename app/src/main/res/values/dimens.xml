@@ -11,4 +11,6 @@
     <dimen name="button_text_size">20dp</dimen>
     <dimen name="confirm_button_margin">20dp</dimen>
     <dimen name="toolbar_elevation">5dp</dimen>
+    <dimen name="textview_drawer_padding">10dp</dimen>
+    <dimen name="age_picker_margin_right">10dp</dimen>
 </resources>

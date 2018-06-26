@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.example.amazinglu.pheramor_project.fragment_register.EmailAndPassWordEditFragment;
+import com.example.amazinglu.pheramor_project.fragment_register.GenderAndDobFragment;
 import com.example.amazinglu.pheramor_project.fragment_register.RegisterStartFragment;
 import com.example.amazinglu.pheramor_project.model.User;
 

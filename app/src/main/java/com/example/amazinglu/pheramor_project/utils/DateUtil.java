@@ -17,7 +17,7 @@ public class DateUtil {
         return dateFormatDateOnly.format(date);
     }
 
-    public static Date stringTodate(String str) {
+    public static Date stringToDate(String str) {
         if (str == null) {
             return null;
         }

@@ -57,7 +57,8 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_email_password, container, false);
         return view;
     }
@@ -73,10 +74,12 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         EditTextPassword = (AppCompatEditText) userPasswordLayout.getEditText();
         EditTextPasswordConfirm = (AppCompatEditText) userPasswordConfirmLayout.getEditText();
 
-        if (user.email != null && !user.email.isEmpty()) {
+        if (user.email != null) {
+            email = user.email;
             EditTextEmail.setText(user.email);
         }
-        if (user.password != null && !user.password.isEmpty()) {
+        if (user.password != null) {
+            password = user.password;
             EditTextPassword.setText(user.password);
             EditTextPasswordConfirm.setText(user.password);
         }

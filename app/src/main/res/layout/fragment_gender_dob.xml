@@ -4,28 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_red"
-        android:textColor="@color/colorWhite"
-        android:padding="@dimen/layout_padding"
-        android:text="@string/password_not_match"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/layout_padding">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_mid"
             android:layout_marginBottom="@dimen/text_view_margin_bottom"
-            android:text="@string/user_gender"/>
+            android:text="@string/user_gender"
+            android:autoSizeTextType="uniform"/>
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/user_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,18 +32,97 @@
         android:orientation="vertical"
         android:padding="@dimen/layout_padding">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_mid"
             android:layout_marginBottom="@dimen/text_view_margin_bottom"
             android:text="@string/date_of_birth"/>
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/user_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_calendar_today_black_18dp"
+            android:drawablePadding="@dimen/textview_drawer_padding"
+            android:textSize="@dimen/text_size_mid"
+            android:hint="May, 12th, 2018"
+            style="@android:style/Widget.EditText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding">
+
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_mid"
-            android:hint="May, 12th, 2018"/>
+            android:layout_marginBottom="@dimen/text_view_margin_bottom"
+            android:text="@string/user_gender_of_interest"
+            android:autoSizeTextType="uniform"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/user_interest_in_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_padding"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_mid"
+            android:layout_marginBottom="@dimen/text_view_margin_bottom"
+            android:text="@string/user_interest_age_range"
+            android:autoSizeTextType="uniform"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/min_age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_mid"
+                android:layout_marginRight="@dimen/age_picker_margin_right"
+                android:text="@string/interest_age_range_from"
+                style="@android:style/Widget.EditText"/>
+
+            <NumberPicker
+                android:id="@+id/min_age_picker"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="@dimen/age_picker_margin_right"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/max_age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_mid"
+                android:layout_marginRight="@dimen/age_picker_margin_right"
+                android:text="@string/interest_age_range_to"
+                style="@android:style/Widget.EditText"/>
+
+            <NumberPicker
+                android:id="@+id/max_age_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

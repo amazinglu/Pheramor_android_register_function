@@ -22,21 +22,22 @@
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_email_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="user email: amazinglu166@gmail.com"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_password_confirm"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
+                    android:inputType=""
                     android:text="password: 87727922"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_email_password_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -59,28 +60,28 @@
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_name_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="user name: yongqian lu"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_zip_code_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="zipcode: 12180"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_height_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="height: 172mm"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_name_zip_code_height_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,21 +104,21 @@
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_gender_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="user gender: male"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_dob_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="day of birth: May, 12th, 2018"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_gender_dob_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,21 +142,21 @@
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_race_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="race: *****"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_religion_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="religion: *******"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_race_religion_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,7 +185,7 @@
                     android:layout_height="@dimen/user_picture_edit_view_height"
                     android:src="@drawable/user_ghost"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_picture_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
