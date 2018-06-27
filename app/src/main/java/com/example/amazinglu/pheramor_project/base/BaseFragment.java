@@ -23,6 +23,10 @@ public abstract class BaseFragment extends Fragment {
         setUpTransition();
     }
 
+    /**
+     * set up simple transition for the fragment
+     * https://github.com/lgvalle/Material-Animations
+     * */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setUpTransition() {
         Transition mFadeTransition = android.transition.TransitionInflater.from(getContext()).
