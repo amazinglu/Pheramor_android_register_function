@@ -50,12 +50,12 @@ public class InputUtil {
         return true;
     }
 
+    /**
+     * compare the Date object with its year, month and day only
+     * */
     public static boolean isDobValid(Date dateOfBirth) {
         Calendar c = Calendar.getInstance();
         Date current = c.getTime();
-        /**
-         * compare date without time
-         * */
         Calendar c1 = Calendar.getInstance();
         Calendar c2 = Calendar.getInstance();
         c1.setTime(dateOfBirth);

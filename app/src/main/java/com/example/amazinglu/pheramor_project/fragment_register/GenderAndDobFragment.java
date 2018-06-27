@@ -85,6 +85,15 @@ public class GenderAndDobFragment extends BaseFragment {
         user = getArguments().getParcelable(MainActivity.KEY_USER);
         editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
+        /**
+         * set up a spinner
+         * set up the adapter includes the layout and the content of the spinner
+         * the content is defined in res/values/string/string-array attribute
+         *
+         * set up the OnItemSelectedListener
+         * get the value of the select item
+         * the listener will be called when the spinner init, and the default item select is item[0]
+         * */
         // set up the user gender chooser
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.gender_chooser, android.R.layout.simple_spinner_item);
@@ -101,6 +110,9 @@ public class GenderAndDobFragment extends BaseFragment {
         genderInterestChooser.setVisibility(View.VISIBLE);
         genderInterestChooser.setOnItemSelectedListener(new GenderInterestOnItemSelectListener());
 
+        /**
+         * set up the number picker
+         * */
         // setup the age range number picker
         minAgePicker.setMinValue(MIN_AGE);
         minAgePicker.setMaxValue(MAX_AGE);
@@ -146,7 +158,7 @@ public class GenderAndDobFragment extends BaseFragment {
         }
 
 
-        // set up dob chooser
+        // set up day of birth chooser
         final DatePickerOnSetListener datePickerOnSetListener = new DatePickerOnSetListener();
         userDobChooser.setOnClickListener(new View.OnClickListener() {
             @Override

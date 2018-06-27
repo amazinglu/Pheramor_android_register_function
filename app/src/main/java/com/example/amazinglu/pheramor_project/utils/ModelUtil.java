@@ -17,6 +17,10 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.Date;
 
+/**
+ * Gson only know to Serialize simple data type or object contains only simple data type
+ * for other type of data, we need to tell gson how to Serialize
+ * */
 public class ModelUtil {
     private static Gson gsonForSerialize = new GsonBuilder()
             .registerTypeAdapter(Date.class, new DateSerializer())

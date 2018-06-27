@@ -18,6 +18,8 @@ public class ImageUtil {
 
     /**
      * load image base on uri and store it into external storage
+     * (the uri from google photo is temporary, if we only save the uri, the uri may not be reached
+     * in the future, so the better way is to download the image and save it locally)
      * */
     public static Uri loadImage(Context context, Uri uri, ImageView imageView) {
         try {
@@ -36,7 +38,7 @@ public class ImageUtil {
     }
 
     /**
-     * load image base on local uri
+     * load image base on local or permanent uri
      * */
     public static void loadImageLocal(Context context, Uri uri, ImageView imageView) {
         Bitmap bitmap = null;
@@ -80,6 +82,9 @@ public class ImageUtil {
     }
 
     public static Uri writeToTempImageAndGetPathUri(Context inContext, Bitmap inImage) {
+        /**
+         * create a new file in external storage to store the image
+         * */
         new File("/sdcard/Pictures").mkdirs();
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);

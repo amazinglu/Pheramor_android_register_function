@@ -246,6 +246,10 @@ public class ConfirmFragment extends BaseFragment {
 
         @Override
         protected void onProgressUpdate(Integer... values) {
+           /**
+            * run in UI thread
+            * can get the progress of the async task here
+            * */
             Toast.makeText(getContext(), values[0], Toast.LENGTH_SHORT).show();
             progressBar.setProgress(values[0]);
         }

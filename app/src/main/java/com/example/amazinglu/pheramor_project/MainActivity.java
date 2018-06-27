@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.register_activity_title);
 
         String editKind = getIntent().getStringExtra(ConfirmFragment.KEY_EDIT_KIND);
-        if (editKind != null) {
+        if (editKind != null) {// from confirm activity, open the proper fragment for editing
             user = getIntent().getParcelableExtra(MainActivity.KEY_USER);
             if (editKind.equals(ConfirmFragment.EDIT_KIND_EMAIL_PASSWORD)) {
                 getSupportFragmentManager()
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                 RaceAndReligionFragment.newInstance(user, EDIT_TYPE_RE_EDIT))
                         .commit();
             }
-        } else {
+        } else { // begin of a new registration, open the welcome page
             user = new User();
             if (savedInstanceState == null) {
                 getSupportFragmentManager()

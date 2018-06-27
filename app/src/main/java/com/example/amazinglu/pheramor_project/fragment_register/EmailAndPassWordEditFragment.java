@@ -119,18 +119,16 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
                 }
             }
         });
-
-        Transition mFadeTransition =
-                TransitionInflater.from(getContext()).
-                        inflateTransition(R.transition.silde_transition);
-        setExitTransition(mFadeTransition);
-//        setEnterTransition(mFadeTransition);
-//        setReenterTransition(mFadeTransition);
-//        setReturnTransition(mFadeTransition);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        /**
+         * edit type:
+         * EDIT_TYPE_RE_EDIT => show the save button in the toolbar
+         * EDIT_TYPE_FIRST_EDIT => not show the save button in the toolbar
+         * (same to all the fragment in fragment_register folder)
+         * */
         if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
             inflater.inflate(R.menu.menu_save, menu);
         } else {
@@ -141,6 +139,12 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            /**
+             * edit type:
+             * EDIT_TYPE_RE_EDIT => go back to ConfirmFragment
+             * EDIT_TYPE_FIRST_EDIT => go back to the previous edit fragment
+             * (same to all the fragment in fragment_register folder)
+             * */
             case android.R.id.home:
                 if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
                     getActivity().getSupportFragmentManager()
@@ -173,6 +177,11 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         passwordConfirm = EditTextPasswordConfirm.getText().toString();
     }
 
+    /**
+     * use AppCompatEditText.setError() to show the error msg when the input is not valid
+     * for other views to show this msg, we can simply set the style of view to
+     * style="@android:style/Widget.EditText"
+     * */
     private boolean validate() {
         //reset errors
         EditTextEmail.setError(null);

@@ -116,7 +116,7 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         editTextZipCode = (AppCompatEditText) userZipcodeLayout.getEditText();
         editTextHeight = (AppCompatEditText) userHeightLayout.getEditText();
 
-        // setup the spinner
+        // setup the height spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.height_unit_chooser, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,7 +145,9 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
 
         setUpUserImageSelectListener();
 
-        // first edit shows next button, re_edit do not show next button
+        /**
+         * set up the next button
+         * */
         if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
             nextButton.setVisibility(View.GONE);
         } else {
@@ -336,6 +338,14 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         dialog.show();
     }
 
+    /**
+     * in the fragment:
+     * if requestPermission() is called, the fragment's onRequestPermissionsResult will be called
+     * when the permission granted
+     * if ActivityCompat.requestPermissions() is called, the activity's onRequestPermissionsResult will be called
+     * when the permission granted
+     * (onActivityResult is in the same logic, ba careful)
+     * */
     private boolean checkPermission() {
         boolean needReadExternalPermission = false;
         boolean needWriteExternalPermission = false;
@@ -373,6 +383,7 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
 
     /**
      * user camera to take profile photo
+     * https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
      * */
     private void takePhoto() throws IOException {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
