@@ -1,10 +1,16 @@
 package com.example.amazinglu.pheramor_project.fragment_register;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +59,7 @@ public class RegisterStartFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,5 +80,16 @@ public class RegisterStartFragment extends Fragment {
                         .commit();
             }
         });
+
+        setTransition();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void setTransition() {
+        Transition mExplodeTransition =
+                TransitionInflater.from(getContext()).
+                        inflateTransition(R.transition.silde_transition);
+        setExitTransition(mExplodeTransition);
+        setEnterTransition(mExplodeTransition);
     }
 }

@@ -2,12 +2,17 @@ package com.example.amazinglu.pheramor_project.fragment_register;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -67,6 +72,7 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -104,7 +110,6 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
                 if (validate()) {
                     user.email = email;
                     user.password = password;
-                    Toast.makeText(getContext(), "inout is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container,
@@ -114,6 +119,14 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
                 }
             }
         });
+
+        Transition mFadeTransition =
+                TransitionInflater.from(getContext()).
+                        inflateTransition(R.transition.silde_transition);
+        setExitTransition(mFadeTransition);
+//        setEnterTransition(mFadeTransition);
+//        setReenterTransition(mFadeTransition);
+//        setReturnTransition(mFadeTransition);
     }
 
     @Override

@@ -161,7 +161,6 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
                     user.zipCode = zipCode;
                     user.height = height;
                     user.heightMeasureUnit = heightMeasureUnit;
-                    Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container,
@@ -307,6 +306,9 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         });
     }
 
+    /**
+     * customize dialog
+     * */
     private void setUpImagePickerDialog() {
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_image_picker);

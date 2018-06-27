@@ -173,7 +173,6 @@ public class GenderAndDobFragment extends BaseFragment {
                     user.genderInInterest = genderInInterest;
                     user.interestMinAge = interestMinAge;
                     user.interestMaxAge = interestMaxAge;
-                    Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container,
@@ -268,7 +267,6 @@ public class GenderAndDobFragment extends BaseFragment {
                     getActivity().getResources().getString(R.string.min_interest_age_not_valid_warning));
             return false;
         }
-
 
         return true;
     }

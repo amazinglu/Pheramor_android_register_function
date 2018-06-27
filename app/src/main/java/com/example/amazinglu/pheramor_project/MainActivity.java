@@ -1,9 +1,15 @@
 package com.example.amazinglu.pheramor_project;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.FragmentManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
+import android.widget.ProgressBar;
 
 import com.example.amazinglu.pheramor_project.fragment_confirm.ConfirmFragment;
 import com.example.amazinglu.pheramor_project.fragment_register.EmailAndPassWordEditFragment;
@@ -27,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private User user;
 
+    @SuppressLint("NewApi")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,5 +81,16 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
             }
         }
+
+        setTransition();
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void setTransition() {
+        Transition mExplodeTransition = android.transition.TransitionInflater.from(MainActivity.this).
+                inflateTransition(R.transition.explode_transition);
+        getWindow().setEnterTransition(mExplodeTransition);
+        getWindow().setExitTransition(mExplodeTransition);
     }
 }

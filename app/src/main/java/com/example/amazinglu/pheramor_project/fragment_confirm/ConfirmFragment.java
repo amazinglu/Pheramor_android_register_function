@@ -1,23 +1,33 @@
 package com.example.amazinglu.pheramor_project.fragment_confirm;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.icu.text.UnicodeSetSpanner;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.amazinglu.pheramor_project.ConfirmActivity;
 import com.example.amazinglu.pheramor_project.MainActivity;
 import com.example.amazinglu.pheramor_project.R;
 import com.example.amazinglu.pheramor_project.base.BaseFragment;
 import com.example.amazinglu.pheramor_project.model.User;
 import com.example.amazinglu.pheramor_project.utils.DateUtil;
 import com.example.amazinglu.pheramor_project.utils.ImageUtil;
+import com.example.amazinglu.pheramor_project.utils.ModelUtil;
+import com.google.gson.reflect.TypeToken;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +52,7 @@ public class ConfirmFragment extends BaseFragment {
     @BindView(R.id.user_race_religion_edit) AppCompatTextView raceReligionEdit;
 
     @BindView(R.id.user_image_confirm) ImageView userImageConfirm;
+    @BindView(R.id.confirm_and_upload_button) Button uploadButton;
 
     public static final String KEY_EDIT_KIND = "edit_kind";
     public static final String EDIT_KIND_EMAIL_PASSWORD = "edit_kind_email_password";
@@ -53,8 +64,10 @@ public class ConfirmFragment extends BaseFragment {
     public static final int REQ_CODE_USER_INFO_EDIT = 2;
     public static final int REQ_CODE_GENDER_DOB_EDIT = 3;
     public static final int REQ_CODE_RACE_RELIGION_EDIT = 4;
+    public static final int REQ_CODE_UPLOAD_SUCCESS_CONFIRM = 5;
 
     private User user;
+    private ProgressBar progressBar;
 
     public static ConfirmFragment newInstance(User user) {
         Bundle args = new Bundle();
@@ -75,10 +88,27 @@ public class ConfirmFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        progressBar = ((ConfirmActivity)getActivity()).getProgressBar();
+        progressBar.setMax(100);
 
         user = getArguments().getParcelable(MainActivity.KEY_USER);
+        progressBar.setVisibility(View.GONE);
+
         setUpViewContent();
         setUpEditButton();
+
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (user.userImageUrl != null) {
+                    user.userImageBitmap = ImageUtil.loadImageBitmap(getContext(), user.userImageUrl);
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(0);
+                UploadTask uploadTask = new UploadTask(user);
+                uploadTask.execute();
+            }
+        });
     }
 
     @Override
@@ -99,7 +129,14 @@ public class ConfirmFragment extends BaseFragment {
             user = data.getParcelableExtra(MainActivity.KEY_USER);
             setUpRaceReligion();
         }
+        if (requestCode == REQ_CODE_UPLOAD_SUCCESS_CONFIRM && resultCode == Activity.RESULT_OK) {
+//            Toast.makeText(getContext(), "upload success confirm", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
+
 
     private void setUpEditButton() {
         emailPasswordEdit.setOnClickListener(new View.OnClickListener() {
@@ -183,4 +220,43 @@ public class ConfirmFragment extends BaseFragment {
         userRaceConfirm.setText(getResources().getString(R.string.race_title) + " " + user.race);
         userReligionConfirm.setText(getResources().getString(R.string.religion_title) + " " + user.religion);
     }
+
+    private void setUpUploadSuccessDialog() {
+        UploadSuccessDialog dialog = new UploadSuccessDialog();
+        dialog.setTargetFragment(ConfirmFragment.this, REQ_CODE_UPLOAD_SUCCESS_CONFIRM);
+        dialog.show(getFragmentManager(), UploadSuccessDialog.TAG);
+    }
+
+    /**
+     * upload context to server API
+     * */
+   class UploadTask extends AsyncTask<Void, Integer, String> {
+
+       private User user;
+
+       public UploadTask(User user) {
+           this.user = user;
+       }
+
+       @Override
+       protected String doInBackground(Void... voids) {
+           String userStr = ModelUtil.toJson(user);
+           return HttpRequestFunc.uploadUserInfo(userStr);
+       }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            Toast.makeText(getContext(), values[0], Toast.LENGTH_SHORT).show();
+            progressBar.setProgress(values[0]);
+        }
+
+        @Override
+       protected void onPostExecute(String str) {
+           progressBar.setVisibility(View.GONE);
+           if (str != null) { // upload success
+                setUpUploadSuccessDialog();
+           }
+           Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+       }
+   }
 }

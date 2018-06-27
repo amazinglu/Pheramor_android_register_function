@@ -1,5 +1,6 @@
 package com.example.amazinglu.pheramor_project.model;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -27,6 +28,7 @@ public class User implements Parcelable {
     public String race;
     public String religion;
     public Uri userImageUrl;
+    public Bitmap userImageBitmap;
 
     public User() {
         // not may it null

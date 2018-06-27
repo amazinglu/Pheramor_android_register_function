@@ -54,6 +54,9 @@
     <string name="age_range_title">Interest age range:</string>
     <string name="race_title">Race:</string>
     <string name="religion_title">Religion:</string>
+    <string name="upload_success_message">Upload Success !!</string>
+    <string name="success_confirm_button">confirm</string>
+    <string name="success_cancel_button">cancel</string>
 
     <string-array name="height_unit_chooser">
         <item>inch</item>

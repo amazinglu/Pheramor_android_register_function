@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -47,6 +48,17 @@ public class ImageUtil {
         imageView.setImageBitmap(bitmap);
     }
 
+    public static Bitmap loadImageBitmap(Context context, Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+            return bitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Uri getImageUrlWithAuthority(Context context, Uri uri) {
         InputStream is = null;
         if (uri.getAuthority() != null) {
@@ -74,5 +86,43 @@ public class ImageUtil {
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
                 inImage, "Title", null);
         return Uri.parse(path);
+    }
+
+    /**
+     * bitmap <-> string
+     * */
+    public static String getStringFromBitmap(Bitmap bitmapPicture) {
+        /*
+         * This functions converts Bitmap picture to a string which can be
+         * JSONified.
+         * */
+        final int COMPRESSION_QUALITY = 100;
+        String encodedImage;
+        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+        bitmapPicture.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
+                byteArrayBitmapStream);
+        byte[] b = byteArrayBitmapStream.toByteArray();
+        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    public static Bitmap getBitmapFromString(String jsonString) {
+        /*
+         * This Function converts the String back to Bitmap
+         * */
+        byte[] decodedString = Base64.decode(jsonString, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
+    }
+
+    /**
+     * Uri <-> string
+     * */
+    public static String uriToString(Uri uri) {
+        return uri.toString();
+    }
+
+    public static Uri stringToUri(String uriStr) {
+        return Uri.parse(uriStr);
     }
 }

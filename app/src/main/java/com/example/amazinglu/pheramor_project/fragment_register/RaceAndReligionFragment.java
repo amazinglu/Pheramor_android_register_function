@@ -100,7 +100,6 @@ public class RaceAndReligionFragment extends BaseFragment {
             public void onClick(View view) {
                 user.race = race;
                 user.religion = religion;
-                Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), ConfirmActivity.class);
                 intent.putExtra(MainActivity.KEY_USER, user);
                 getActivity().startActivity(intent);
