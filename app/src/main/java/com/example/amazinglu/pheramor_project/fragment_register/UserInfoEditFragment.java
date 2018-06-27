@@ -2,6 +2,7 @@ package com.example.amazinglu.pheramor_project.fragment_register;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -68,6 +69,8 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
     private static final int REQ_CODE_TAKE_PICTURE = 203;
 
     private User user;
+    private String editType;
+
     private String userName;
     private String zipCode;
     private double height;
@@ -80,9 +83,10 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
     private AppCompatEditText editTextZipCode;
     private AppCompatEditText editTextHeight;
 
-    public static UserInfoEditFragment newInstance(User user) {
+    public static UserInfoEditFragment newInstance(User user, String editType) {
         Bundle args = new Bundle();
         args.putParcelable(MainActivity.KEY_USER, user);
+        args.putString(MainActivity.KEY_EDIT_TYPE, editType);
         UserInfoEditFragment fragment = new UserInfoEditFragment();
         fragment.setArguments(args);
         return fragment;
@@ -103,6 +107,7 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         ButterKnife.bind(this, view);
 
         user = getArguments().getParcelable(MainActivity.KEY_USER);
+        editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
         editTextUserName = (AppCompatEditText) userNameLayout.getEditText();
         editTextZipCode = (AppCompatEditText) userZipcodeLayout.getEditText();
@@ -148,7 +153,8 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
                     Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, GenderAndDobFragment.newInstance(user))
+                            .replace(R.id.fragment_container,
+                                    GenderAndDobFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                             .commit();
                 }
             }
@@ -191,9 +197,12 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // TODO: what to do when get the permission
-        if (requestCode == PermissionUtil.REQ_CODE_READ_EXTERNAL_STORAGE && grantResults.length > 0
+        if ((requestCode == PermissionUtil.REQ_CODE_READ_EXTERNAL_STORAGE ||
+                requestCode == PermissionUtil.REQ_CODE_WRITE_EXTERNAL_STORAGE ||
+                requestCode == PermissionUtil.REQ_CODE_CAMERA)
+                && grantResults.length > 0
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            pickImage();
+            setUpImagePickerDialog();
         }
     }
 
@@ -203,7 +212,8 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
             case android.R.id.home:
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, EmailAndPassWordEditFragment.newInstance(user))
+                        .replace(R.id.fragment_container,
+                                EmailAndPassWordEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                         .addToBackStack(null)
                         .commit();
                 return true;
@@ -253,16 +263,37 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
             @Override
             public void onClick(View view) {
                 if (checkPermission()) {
-                    // TODO: dialog to choose whether pick up a image of take photo
-//                    pickImage();
-                    try {
-                        takePhoto();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    setUpImagePickerDialog();
                 }
             }
         });
+    }
+
+    private void setUpImagePickerDialog() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_image_picker);
+        final TextView takephoto = (TextView) dialog.findViewById(R.id.take_photo);
+        final TextView pickImage = (TextView) dialog.findViewById(R.id.pick_image);
+        takephoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    takePhoto();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        });
+
+        pickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickImage();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private boolean checkPermission() {
@@ -280,13 +311,13 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         }
 
         if (needReadExternalPermission) {
-            PermissionUtil.requestReadExternalStoragePermission(getActivity());
+            PermissionUtil.requestReadExternalStoragePermission(this);
         }
         if (needWriteExternalPermission) {
-            PermissionUtil.requestWriteExternalStoragePermission(getActivity());
+            PermissionUtil.requestWriteExternalStoragePermission(this);
         }
         if (needCameraPermission) {
-            PermissionUtil.requestCameraPermission(getActivity());
+            PermissionUtil.requestCameraPermission(this);
         }
 
         return !needCameraPermission && !needReadExternalPermission && !needWriteExternalPermission;

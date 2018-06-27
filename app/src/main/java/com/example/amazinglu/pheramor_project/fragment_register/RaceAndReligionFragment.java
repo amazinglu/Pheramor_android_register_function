@@ -1,5 +1,6 @@
 package com.example.amazinglu.pheramor_project.fragment_register;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.amazinglu.pheramor_project.ConfirmActivity;
 import com.example.amazinglu.pheramor_project.MainActivity;
 import com.example.amazinglu.pheramor_project.R;
 import com.example.amazinglu.pheramor_project.base.BaseFragment;
@@ -32,11 +34,14 @@ public class RaceAndReligionFragment extends BaseFragment {
     @BindView(R.id.next_button_four) Button nextButton;
 
     private User user;
+    private String editType;
+
     private String race, religion;
 
-    public static RaceAndReligionFragment newInstance(User user) {
+    public static RaceAndReligionFragment newInstance(User user, String editType) {
         Bundle args = new Bundle();
         args.putParcelable(MainActivity.KEY_USER, user);
+        args.putString(MainActivity.KEY_EDIT_TYPE, editType);
         RaceAndReligionFragment fragment = new RaceAndReligionFragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,6 +59,7 @@ public class RaceAndReligionFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         user = getArguments().getParcelable(MainActivity.KEY_USER);
+        editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
         // set up race chooser
         ArrayAdapter<CharSequence> RaceChooserAdapter = ArrayAdapter.createFromResource(getContext(),
@@ -87,6 +93,13 @@ public class RaceAndReligionFragment extends BaseFragment {
                 user.race = race;
                 user.religion = religion;
                 Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ConfirmActivity.class);
+                intent.putExtra(MainActivity.KEY_USER, user);
+                getActivity().startActivity(intent);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(RaceAndReligionFragment.this)
+                        .commit();
             }
         });
     }
@@ -97,7 +110,8 @@ public class RaceAndReligionFragment extends BaseFragment {
             case android.R.id.home:
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, GenderAndDobFragment.newInstance(user))
+                        .replace(R.id.fragment_container,
+                                GenderAndDobFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                         .commit();
                 return true;
         }

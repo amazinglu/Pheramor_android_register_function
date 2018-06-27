@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/layout_padding">
+
+    <TextView
+        android:id="@+id/take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_dialog"
+        android:layout_margin="@dimen/text_view_margin_bottom"
+        android:text="@string/take_photo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_back"/>
+
+    <TextView
+        android:id="@+id/pick_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_view_margin_bottom"
+        android:textSize="@dimen/text_size_dialog"
+        android:text="@string/pick_image"/>
+
+</LinearLayout>

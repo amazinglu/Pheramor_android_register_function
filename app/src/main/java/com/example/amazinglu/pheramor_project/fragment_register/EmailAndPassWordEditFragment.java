@@ -40,16 +40,16 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
     private String passwordConfirm;
 
     private User user;
+    private String editType;
 
     private AppCompatEditText EditTextEmail;
     private AppCompatEditText EditTextPassword;
     private AppCompatEditText EditTextPasswordConfirm;
 
-    private String warning;
-
-    public static EmailAndPassWordEditFragment newInstance(User user) {
+    public static EmailAndPassWordEditFragment newInstance(User user, String editType) {
         Bundle args = new Bundle();
         args.putParcelable(MainActivity.KEY_USER, user);
+        args.putString(MainActivity.KEY_EDIT_TYPE, editType);
         EmailAndPassWordEditFragment fragment = new EmailAndPassWordEditFragment();
         fragment.setArguments(args);
         return fragment;
@@ -69,6 +69,7 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         user = getArguments().getParcelable(MainActivity.KEY_USER);
+        editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
         EditTextEmail = (AppCompatEditText) userEmailLayout.getEditText();
         EditTextPassword = (AppCompatEditText) userPasswordLayout.getEditText();
@@ -95,7 +96,8 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
                     Toast.makeText(getContext(), "inout is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, UserInfoEditFragment.newInstance(user))
+                            .replace(R.id.fragment_container,
+                                    UserInfoEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                             .addToBackStack(null)
                             .commit();
                 }

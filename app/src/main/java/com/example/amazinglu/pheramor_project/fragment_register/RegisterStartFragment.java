@@ -67,7 +67,8 @@ public class RegisterStartFragment extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, EmailAndPassWordEditFragment.newInstance(user))
+                        .replace(R.id.fragment_container,
+                                EmailAndPassWordEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                         .addToBackStack(null)
                         .commit();
             }

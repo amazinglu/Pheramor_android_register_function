@@ -50,14 +50,17 @@ public class GenderAndDobFragment extends BaseFragment {
     private static final int MIN_AGE = 0;
 
     private User user;
+    private String editType;
+
     private String gender;
     private Date dateOfBirth;
     private String genderInInterest;
     private Integer interestMinAge, interestMaxAge;
 
-    public static GenderAndDobFragment newInstance(User user) {
+    public static GenderAndDobFragment newInstance(User user, String editType) {
         Bundle args = new Bundle();
         args.putParcelable(MainActivity.KEY_USER, user);
+        args.putString(MainActivity.KEY_EDIT_TYPE, editType);
         GenderAndDobFragment fragment = new GenderAndDobFragment();
         fragment.setArguments(args);
         return fragment;
@@ -76,6 +79,7 @@ public class GenderAndDobFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         user = getArguments().getParcelable(MainActivity.KEY_USER);
+        editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
         // set up the user gender chooser
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -163,7 +167,8 @@ public class GenderAndDobFragment extends BaseFragment {
                     Toast.makeText(getContext(), "input is valid", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, RaceAndReligionFragment.newInstance(user))
+                            .replace(R.id.fragment_container,
+                                    RaceAndReligionFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                             .commit();
                 }
             }
@@ -176,7 +181,8 @@ public class GenderAndDobFragment extends BaseFragment {
             case android.R.id.home:
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, UserInfoEditFragment.newInstance(user))
+                        .replace(R.id.fragment_container,
+                                UserInfoEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
                         .commit();
                 return true;
         }

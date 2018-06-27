@@ -6,4 +6,6 @@
 
     <color name="background_red">#f44336</color>
     <color name="colorWhite">#FAFAFA</color>
+
+    <color name="color_back">#212121</color>
 </resources>

@@ -13,4 +13,6 @@
     <dimen name="toolbar_elevation">5dp</dimen>
     <dimen name="textview_drawer_padding">10dp</dimen>
     <dimen name="age_picker_margin_right">10dp</dimen>
+    <dimen name="text_size_dialog">18dp</dimen>
+    <dimen name="user_image_comfirm_size">54dp</dimen>
 </resources>

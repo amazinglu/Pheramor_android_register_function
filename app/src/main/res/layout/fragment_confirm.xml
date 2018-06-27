@@ -54,42 +54,59 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_view_margin">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/layout_padding"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/user_name_confirm"
+                <LinearLayout
+                    android:id="@+id/user_info_content_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_mid"
-                    android:text="user name: yongqian lu"/>
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/user_zip_code_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_mid"
-                    android:text="zipcode: 12180"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/user_name_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_mid"
+                        android:text="user name: yongqian lu"/>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/user_height_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_mid"
-                    android:text="height: 172mm"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/user_zip_code_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_mid"
+                        android:text="zipcode: 12180"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/user_height_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_mid"
+                        android:text="height: 172mm"/>
+                </LinearLayout>
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_name_zip_code_height_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/user_info_content_layout"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:text="@string/edit_button_text"/>
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/user_image_confirm"
+                    android:layout_width="@dimen/user_image_comfirm_size"
+                    android:layout_height="@dimen/user_image_comfirm_size"
+                    android:layout_above="@id/user_name_zip_code_height_edit"
+                    android:src="@drawable/user_ghost"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -117,6 +134,20 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_mid"
                     android:text="day of birth: May, 12th, 2018"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/user_gender_in_interest_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_mid"
+                    android:text="Gender in interest: *****"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/user_interest_age_range_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_mid"
+                    android:text="interest age range: ** to **"/>
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_gender_dob_edit"
@@ -158,35 +189,6 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/user_race_religion_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/edit_button_text"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_view_margin">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/layout_padding"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/user_picture_confirm"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/user_picture_edit_view_height"
-                    android:src="@drawable/user_ghost"/>
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/user_picture_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"

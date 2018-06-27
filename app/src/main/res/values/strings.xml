@@ -40,6 +40,20 @@
     <string name="min_interest_age_empty_warning">Min interest age is required !!</string>
     <string name="min_interest_age_not_valid_warning">Min age can not be larger than max age !!</string>
     <string name="race_empty_warning">race is needed</string>
+    <string name="take_photo">Take a picture              </string>
+    <string name="pick_image">pick an image from album</string>
+    <string name="confirm_activity_title">Chack Again</string>
+    <string name="email_title">Email:</string>
+    <string name="password_title">Password:</string>
+    <string name="name_title">Name:</string>
+    <string name="zipcode_title">ZipCode:</string>
+    <string name="height_title">Height</string>
+    <string name="gender_title">Gender:</string>
+    <string name="dob_title">Date of birth:</string>
+    <string name="gender_in_interest_title">Gender in interest:</string>
+    <string name="age_range_title">Interest age range:</string>
+    <string name="race_title">Race:</string>
+    <string name="religion_title">Religion:</string>
 
     <string-array name="height_unit_chooser">
         <item>inch</item>
