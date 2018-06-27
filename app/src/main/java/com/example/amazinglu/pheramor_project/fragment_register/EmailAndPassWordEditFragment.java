@@ -1,5 +1,7 @@
 package com.example.amazinglu.pheramor_project.fragment_register;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +75,12 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         user = getArguments().getParcelable(MainActivity.KEY_USER);
         editType = getArguments().getString(MainActivity.KEY_EDIT_TYPE);
 
+        if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
+            nextButton.setVisibility(View.VISIBLE);
+        } else {
+            nextButton.setVisibility(View.GONE);
+        }
+
         EditTextEmail = (AppCompatEditText) userEmailLayout.getEditText();
         EditTextPassword = (AppCompatEditText) userPasswordLayout.getEditText();
         EditTextPasswordConfirm = (AppCompatEditText) userPasswordConfirmLayout.getEditText();
@@ -81,6 +91,7 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
         }
         if (user.password != null) {
             password = user.password;
+            passwordConfirm = user.password;
             EditTextPassword.setText(user.password);
             EditTextPasswordConfirm.setText(user.password);
         }
@@ -106,14 +117,38 @@ public class EmailAndPassWordEditFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
+            inflater.inflate(R.menu.menu_save, menu);
+        } else {
+            return;
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, RegisterStartFragment.newInstance(user))
-                        .addToBackStack(null)
-                        .commit();
+                if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, RegisterStartFragment.newInstance(user))
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    getActivity().finish();
+                }
+                return true;
+            case R.id.toolbar_save:
+                getInput();
+                if (validate()) {
+                    user.email = email;
+                    user.password = password;
+                    Intent intent = new Intent();
+                    intent.putExtra(MainActivity.KEY_USER, user);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                    getActivity().finish();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

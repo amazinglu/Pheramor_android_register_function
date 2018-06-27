@@ -23,6 +23,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,7 @@ import com.example.amazinglu.pheramor_project.BuildConfig;
 import com.example.amazinglu.pheramor_project.MainActivity;
 import com.example.amazinglu.pheramor_project.R;
 import com.example.amazinglu.pheramor_project.base.BaseFragment;
+import com.example.amazinglu.pheramor_project.fragment_confirm.ConfirmFragment;
 import com.example.amazinglu.pheramor_project.model.User;
 import com.example.amazinglu.pheramor_project.utils.ImageUtil;
 import com.example.amazinglu.pheramor_project.utils.InputUtil;
@@ -121,6 +124,7 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         heightUnitChooser.setVisibility(View.VISIBLE);
         heightUnitChooser.setOnItemSelectedListener(this);
 
+        // set the view content
         if (user.name != null) {
             userName = user.name;
             editTextUserName.setText(user.name);
@@ -140,6 +144,13 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
         }
 
         setUpUserImageSelectListener();
+
+        // first edit shows next button, re_edit do not show next button
+        if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
+            nextButton.setVisibility(View.GONE);
+        } else {
+            nextButton.setVisibility(View.VISIBLE);
+        }
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,15 +218,42 @@ public class UserInfoEditFragment extends BaseFragment implements AdapterView.On
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // if edit type is re-edit, inflate the save button
+        if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
+            inflater.inflate(R.menu.menu_save, menu);
+        } else {
+            return;
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container,
-                                EmailAndPassWordEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
-                        .addToBackStack(null)
-                        .commit();
+                if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container,
+                                    EmailAndPassWordEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    getActivity().finish();
+                }
+                return true;
+            case R.id.toolbar_save:
+                getUserInput();
+                if (validate()) {
+                    user.name = userName;
+                    user.zipCode = zipCode;
+                    user.height = height;
+                    user.heightMeasureUnit = heightMeasureUnit;
+                    Intent intent = new Intent();
+                    intent.putExtra(MainActivity.KEY_USER, user);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                    getActivity().finish();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

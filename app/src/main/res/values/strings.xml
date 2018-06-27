@@ -42,7 +42,7 @@
     <string name="race_empty_warning">race is needed</string>
     <string name="take_photo">Take a picture              </string>
     <string name="pick_image">pick an image from album</string>
-    <string name="confirm_activity_title">Chack Again</string>
+    <string name="confirm_activity_title">Here is your profile</string>
     <string name="email_title">Email:</string>
     <string name="password_title">Password:</string>
     <string name="name_title">Name:</string>

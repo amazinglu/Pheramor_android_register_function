@@ -1,7 +1,9 @@
 package com.example.amazinglu.pheramor_project.fragment_register;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.TestLooperManager;
@@ -10,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,6 +159,11 @@ public class GenderAndDobFragment extends BaseFragment {
         });
 
         // set up the next button
+        if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
+            nextButton.setVisibility(View.VISIBLE);
+        } else {
+            nextButton.setVisibility(View.GONE);
+        }
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,14 +185,40 @@ public class GenderAndDobFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (editType.equals(MainActivity.EDIT_TYPE_RE_EDIT)) {
+            inflater.inflate(R.menu.menu_save, menu);
+        } else {
+            return;
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container,
-                                UserInfoEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
-                        .commit();
+                if (editType.equals(MainActivity.EDIT_TYPE_FIRST_EDIT)) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container,
+                                    UserInfoEditFragment.newInstance(user, MainActivity.EDIT_TYPE_FIRST_EDIT))
+                            .commit();
+                } else {
+                    getActivity().finish();
+                }
+                return true;
+            case R.id.toolbar_save:
+                if (validate()) {
+                    user.dateOfBirth = dateOfBirth;
+                    user.gender = gender;
+                    user.genderInInterest = genderInInterest;
+                    user.interestMinAge = interestMinAge;
+                    user.interestMaxAge = interestMaxAge;
+                    Intent intent = new Intent();
+                    intent.putExtra(MainActivity.KEY_USER, user);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                    getActivity().finish();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
