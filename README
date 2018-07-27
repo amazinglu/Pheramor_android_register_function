@@ -1,0 +1,47 @@
+set transition of the activity
+
+    set the transition xml in res/transition
+    then we can set transition using "getWindow().setEnterTransition"
+    => MainActicity.setTransition()
+
+check the validate of the input data
+
+    check the data base on custom standard and use EditText.setError() to print out error msg
+    the let other type of view to show error msg:
+       in xml file, add "style="@android:style/Widget.EditText""
+
+set up a spinner
+
+    see comment in line 88 of GenderAndDobFragment
+
+set up a number picker
+
+    set the min and max value
+    setOnValueChangedListener
+
+set up date picker
+
+    DatePickerDialog.OnDateSetListener to get the date value
+    set up the dialog for date picking
+
+set up a custom dialog
+
+    line 314 UserInfoEditFragment
+    just like a activity, we need to have a layout xml file, then setContentView, get the views
+    and set view listener
+
+take picture using the phone camera or pick image from MediaStore
+
+    Android-access-camera_demo and data_storage_demo has a more detail explanation
+
+detail about startActivityForResult in fragment
+
+    * activity.startActivityForResult will return to activity's onActivityResult
+    * fragment.startActivityForResult will return to fragment's onActivityResult
+
+    When in AppCompatActivity, you should use ActivityCompat.requestPermissions;
+         * When in android.support.v4.app.Fragment, you should use simply requestPermissions
+         * (this is an instance method of android.support.v4.app.Fragment)
+         * If you call ActivityCompat.requestPermissions in a fragment,
+         * the onRequestPermissionsResult callback is called on the activity and not the fragment.
+
